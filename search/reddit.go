@@ -55,14 +55,14 @@ func printResult(res result) string {
 	var b bytes.Buffer
 	items := res.Data.Children
 	for index, item := range items {
-		fmt.FPrintf(b, "%d. %s - %s (%d votes)\n", index, item.Data.Title, item.Data.Url, item.Data.Ups)
+		fmt.Fprintf(&b, "%d. %s - %s (%d votes)\n", index, item.Data.Title, item.Data.Url, item.Data.Ups)
 	}
 	return b.String()
 }
 
 func Reddit(subreddit string, context tacit.Context) (string, error) {
 	var res result
-	err := FetchJson("http://www.reddit.com/r/programming.json", &res)
+	err := fetchJson("http://www.reddit.com/r/programming.json", &res)
 	if err != nil {
 		return "", err
 	}
