@@ -56,12 +56,13 @@ func Xkcd(question string, context tacit.Context) (string, error) {
 	if err != nil {
 		return "", err
 	}
-
-	i := rand.Intn(res.Num-1) + 1
-	Url = "http://xkcd.com/" + strconv.Itoa(i) + "/info.0.json"
-	err = fetchJson(Url, &res)
-	if err != nil {
-		return "", err
+	if num == "random" {
+		i := rand.Intn(res.Num-1) + 1
+		Url = "http://xkcd.com/" + strconv.Itoa(i) + "/info.0.json"
+		err = fetchJson(Url, &res)
+		if err != nil {
+			return "", err
+		}
 	}
 
 	answer := xkcdPrint(&res)
