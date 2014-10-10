@@ -3,10 +3,10 @@ package search
 import (
 	"bytes"
 	// "fmt"
+	"github.com/keimoon/cerebro/tacit"
 	"math/rand"
-	"strconv"
-	// "github.com/keimoon/cerebro/tacit"
 	"regexp"
+	"strconv"
 )
 
 type xkcdResult struct {
@@ -31,7 +31,7 @@ func xkcdPrint(res *xkcdResult) string {
 
 var reXkcd = regexp.MustCompile(`xkcd ([0-9]+|random)`)
 
-func Xkcd(question string) (string, error) {
+func Xkcd(question string, context tacit.Context) (string, error) {
 	parts := reXkcd.FindStringSubmatch(question)
 	// fmt.Printf("%#v", parts)
 	if len(parts) == 0 {
