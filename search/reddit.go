@@ -2,12 +2,8 @@ package search
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"github.com/keimoon/cerebro/tacit"
-	"io/ioutil"
-	"log"
-	"net/http"
 )
 
 type result struct {
@@ -30,25 +26,6 @@ type result struct {
 		//Modhash string `json:"modhash"`
 	} `json:"data"`
 	//Kind string `json:"kind"`
-}
-
-func fetchJson(url string, v interface{}) error {
-	res, err := http.Get(url)
-	if err != nil {
-		return err
-	}
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return err
-	}
-
-	err = json.Unmarshal(body, v)
-	if err != nil {
-		return err
-	}
-	return nil
 }
 
 func printResult(res result) string {
