@@ -2,7 +2,7 @@ package search
 
 import (
 	"bytes"
-	// "fmt"
+	"fmt"
 	"github.com/keimoon/cerebro/tacit"
 	"math/rand"
 	"regexp"
